@@ -32,7 +32,7 @@ def reserve_screenshot(label: str) -> Path:
     if not re.fullmatch(r"[a-zA-Z0-9_-]+", label):
         raise ValueError("Use letters, digits, hyphens or underscores in screenshot names")
     now = datetime.now(ZoneInfo("America/Vancouver"))
-    folder = RECORDINGS / now.strftime("%m/%d/%Y")
+    folder = RECORDINGS / now.strftime("%m-%d-%Y")
     folder.mkdir(parents=True, exist_ok=True)
     stamp = f"{now.hour % 12 or 12}:{now.minute:02}{'am' if now.hour < 12 else 'pm'}"
     for sequence in itertools.count(1):
