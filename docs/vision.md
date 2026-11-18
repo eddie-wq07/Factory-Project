@@ -43,17 +43,11 @@ Source: train a custom RGB-D navigation policy using Isaac Lab's [CameraCfg](/ho
 
 ## Exact task
 
-Proposed task: move a small box between two factory workstations.
-
-Navigate to the pickup table. Locate the box, grasp it, and lift it.
-
-Carry it to the drop-off station. Place it inside the marked area and release it.
-
-Return to the pickup station and repeat. Gradually vary the box position and route obstacles.
-
-For the November 19 demo, prioritize one complete sequence. Treat robust learned policies as a later milestone.
-
-Source: author the full sequence in this project's [factory task](/home/eddie/Desktop/Simulation/S1-Project/src/Factory_Project/tasks/factory), using Isaac Lab's [locomanipulation example](/home/eddie/IsaacLab/source/isaaclab_tasks/isaaclab_tasks/contrib/locomanip_pick_place/locomanipulation_g1_env_cfg.py) as a structural reference.
+Proposed task: 
+- Robot spawns in at current spawn. 
+- Prerequisite: https://huggingface.co/datasets/nvidia/simready-assets/blob/653d91e182011f357cf1644013cc94ddf194d349/rack_composition_l10/simready_usd/sm_rack_composition_l10_01.usd exists a few meteres to the left of the robot spawn point. Contains a set of duplicated boxes/parts from aisle 1, 2, 3, 4, 5, 6. So 6 items per aisle. All unique. 2 boxes in each level. The otp level holds no box. 
+- Robot goes to that shelving storage. Using visuals takes the box and travels to the respective aisle and places it in a designated drop spot. The boxes will contain a specific tag that will be sorted alphabetically. 
+- Robot must place the box in correct order. The boxes must never be stacked more than 3 boxes. 
 
 ## Current State
 
