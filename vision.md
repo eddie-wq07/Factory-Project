@@ -22,8 +22,7 @@ Use the mobile base to move between workstations. Start with one arm for manipul
 
 Validate the robot model, gripper, and camera setup before training.
 
-Source: combine the local [wheel URDF](/home/eddie/Desktop/Simulation/astribot_descriptions/urdf/astribot_s1_urdf/astribot_whole_body_with_wheel.urdf) and [gripper definitions](/home/eddie/Desktop/Simulation/astribot_descriptions/urdf/astribot_s1_urdf/astribot_whole_body_maniskill.urdf) from [Astribot-Dev](https://github.com/Astribot-Dev/astribot_descriptions), then validate mesh paths and collisions.
-
+The [project-owned S1 asset](src/Factory_Project/assets/data/astribot_s1/astribot_s1.usd) combines the four-wheel base and dual grippers. The [source notes](src/Factory_Project/assets/data/astribot_s1/SOURCE.md) describe the model and simulation approximations.
 ## Policy
 
 Separate navigation and manipulation policies. A task controller coordinates the full sequence.

@@ -9,3 +9,6 @@ from pathlib import Path
 
 FACTORY_PROJECT_ASSETS_DIR = Path(__file__).resolve().parent / "data"
 """Path to project-owned asset data."""
+
+ASTRIBOT_S1_USD = FACTORY_PROJECT_ASSETS_DIR / "astribot_s1" / "astribot_s1.usd"
+"""Loadable USD for the mobile, dual-gripper Astribot S1."""

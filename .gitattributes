@@ -6,5 +6,9 @@
 *.jit filter=lfs diff=lfs merge=lfs -text
 *.hdf5 filter=lfs diff=lfs merge=lfs -text
 
+# Keep the vendored Astribot CAD meshes in the same LFS store as the compiled geometry.
+src/Factory_Project/assets/data/astribot_s1/urdf/meshes/**/*.dae filter=lfs diff=lfs merge=lfs -text
+src/Factory_Project/assets/data/astribot_s1/urdf/meshes/**/*.STL filter=lfs diff=lfs merge=lfs -text
+
 *.bat text eol=crlf
 *.sh text eol=lf
