@@ -71,6 +71,8 @@ def build():
     )
     # Author last: this remote environment resolves through Kit's HTTP resolver.
     stage.DefinePrim("/World/Factory", "Xform").GetReferences().AddReference(WAREHOUSE)
+    if (DATA / "environments/factory_labels.usda").is_file():
+        stage.GetRootLayer().subLayerPaths.append("factory_labels.usda")
     stage.GetRootLayer().Save()
     print(output, "inner square:", side)
 
