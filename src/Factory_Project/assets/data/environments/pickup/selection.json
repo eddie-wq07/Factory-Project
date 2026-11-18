@@ -1,0 +1,152 @@
+[
+  {
+    "name": "Box_4013",
+    "path": "/World/Factory/Box_4013",
+    "aisle": 1,
+    "asset": "./Props/SM_CardBoxB_01.usd",
+    "family": "SM_CardBoxB_01",
+    "dimensions": [
+      0.5018361455378795,
+      0.5003451365644054,
+      0.4999999888241291
+    ],
+    "center": [
+      -25.549254495513264,
+      16.179999999999996,
+      3.060000146999952
+    ],
+    "slot": 1,
+    "level": 1,
+    "sorting_prim": "/World/SortingRack/Item1",
+    "sorting_position": [
+      0.27,
+      3.25,
+      0.6262
+    ]
+  },
+  {
+    "name": "Crate_15940",
+    "path": "/World/Factory/Crate_15940",
+    "aisle": 2,
+    "asset": "./Props/SM_CratePlastic_A_02.usd",
+    "family": "SM_CratePlastic_A_02",
+    "dimensions": [
+      0.4994022836393608,
+      0.61636842211119,
+      0.2512767163378733
+    ],
+    "center": [
+      -15.712190704560875,
+      9.400502911507544,
+      1.4256378431848173
+    ],
+    "slot": 2,
+    "level": 1,
+    "sorting_prim": "/World/SortingRack/Item2",
+    "sorting_position": [
+      1.73,
+      3.25,
+      0.6262
+    ]
+  },
+  {
+    "name": "Crate_16579",
+    "path": "/World/Factory/Crate_16579",
+    "aisle": 3,
+    "asset": "./Props/SM_CratePlastic_B_02.usd",
+    "family": "SM_CratePlastic_B_02",
+    "dimensions": [
+      0.43677489258107016,
+      0.5299291873739094,
+      0.13627781797999994
+    ],
+    "center": [
+      -15.164837646484376,
+      22.83366392140986,
+      2.8681388684967914
+    ],
+    "slot": 3,
+    "level": 2,
+    "sorting_prim": "/World/SortingRack/Item3",
+    "sorting_position": [
+      0.27,
+      3.25,
+      1.2264
+    ]
+  },
+  {
+    "name": "Box_19189",
+    "path": "/World/Factory/Box_19189",
+    "aisle": 4,
+    "asset": "./Props/SM_CardBoxA_02_708.usd",
+    "family": "SM_CardBoxA_02",
+    "dimensions": [
+      0.8041697985579077,
+      0.645478226443938,
+      0.5032872468988463
+    ],
+    "center": [
+      -10.46334095645527,
+      19.5749488635985,
+      2.0516433754941064
+    ],
+    "slot": 4,
+    "level": 2,
+    "sorting_prim": "/World/SortingRack/Item4",
+    "sorting_position": [
+      1.73,
+      3.25,
+      1.2264
+    ]
+  },
+  {
+    "name": "SM_BottlePlasticD_2",
+    "path": "/World/Factory/SM_BottlePlasticD_2",
+    "aisle": 5,
+    "asset": "./Props/SM_BottlePlasticD_01.usd",
+    "family": "SM_BottlePlasticD_01",
+    "dimensions": [
+      0.18057163454893077,
+      0.3021726746456057,
+      0.06083558590548333
+    ],
+    "center": [
+      -2.425400772180078,
+      11.609503482648677,
+      0.03057083097703697
+    ],
+    "slot": 5,
+    "level": 3,
+    "sorting_prim": "/World/SortingRack/Item5",
+    "sorting_position": [
+      0.27,
+      3.25,
+      1.8263999999999998
+    ]
+  },
+  {
+    "name": "Box_33802",
+    "path": "/World/Factory/Box_33802",
+    "aisle": 6,
+    "asset": "./Props/SM_CardBoxC_01.usd",
+    "family": "SM_CardBoxC_01",
+    "dimensions": [
+      0.90437299436138,
+      0.9043729943613812,
+      0.4374999902211129
+    ],
+    "center": [
+      -0.45000000000000023,
+      24.240000000000006,
+      0.42874906050974726
+    ],
+    "slot": 6,
+    "level": 3,
+    "sorting_prim": "/World/SortingRack/Item6",
+    "sorting_position": [
+      1.73,
+      3.25,
+      1.8263999999999998
+    ]
+  }
+]

@@ -95,3 +95,22 @@ Between **R6 and R7**, center X≈1.93 m. Cartons line both sides; a forklift ne
 For the first controlled task, keep the warehouse static and define one pickup carton plus a drop zone on accessible floor space. Choose their locations after checking S1 reach and route clearance. Aisle 5 offers clutter for later perception/avoidance work; aisle 6 offers a fixed forklift obstacle. Neither requires changing all warehouse cargo into dynamic bodies.
 
 Evidence consists of the composed USD hierarchy, world-space geometry bounds, physics API inspection and the linked renders. Counts describe this scene version; no per-box grasp, mass, friction, collision-shape accuracy or path-planning validation was performed.
+
+## “To be sorted.” rack — six-item prerequisite
+
+**One rack, one item from each aisle.** It is saved at **(1.0, 3.3, 0) m**, the former aisle-6 rack position in the reverted arrangement, southwest of the robot spawn. The original warehouse aisle 6 remains unchanged. The title reads **“To be sorted.”**
+
+Two items occupy each lower shelf; the top shelf is empty. All six use different model variants and retain their source sizes. Reading left-to-right, bottom-to-top:
+
+| Shelf / side | Source aisle | Selected item | Why |
+| --- | --- | --- | --- |
+| Bottom / left | 1 | `SM_CardBoxB_01` — cube carton | Regular closed box as a baseline. |
+| Bottom / right | 2 | `SM_CratePlastic_A_02` — blue bin | Open container with a different rim and shape. |
+| Middle / left | 3 | `SM_CratePlastic_B_02` — shallow white bin | Smaller, shallower container than the blue bin. |
+| Middle / right | 4 | `SM_CardBoxA_02` — open carton | Flaps and an open top distinguish it from the closed carton. |
+| Upper occupied / left | 5 | `SM_BottlePlasticD_01` — small bottle | A small non-box item from the floor clutter. |
+| Upper occupied / right | 6 | `SM_CardBoxC_01` — enlarged shallow carton | A broader package, preserving its existing source scale. |
+
+[Corrected rack screenshot](../recordings/11-18-2026/sorting-rack/To-be-sorted.png) · [Source prims and placements](../src/Factory_Project/assets/data/environments/pickup/selection.json)
+
+The saved factory composes `sorting_rack.usda`; `scripts/build_sorting_rack.py` rebuilds it. Original aisle objects remain in place. This is static staging only, with no new grasp/reset behavior.
