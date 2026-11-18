@@ -1,12 +1,18 @@
-"""Render a self-contained robot USD in an inspection scene and capture Kit's viewport."""
+"""Set up robot inspection views and record Kit viewports as dated PNGs or MP4s."""
 
 import asyncio
 import itertools
 import math
 import re
+import shutil
+import subprocess
 import time
+from collections.abc import Callable, Iterator
+from contextlib import contextmanager
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from zoneinfo import ZoneInfo
 
 ASSET_DIR = Path(__file__).resolve().parent
@@ -27,22 +33,27 @@ VIEWS = (*EXTERIOR_VIEWS, *ONBOARD_VIEWS)
 RESOLUTION = (1280, 960)
 
 
-def reserve_screenshot(label: str) -> Path:
-    """Reserve a new PNG path even when two sessions capture in the same minute."""
+def _reserve_recording(label: str, extension: str) -> Path:
+    """Claim a dated capture path without overwriting another session."""
     if not re.fullmatch(r"[a-zA-Z0-9_-]+", label):
-        raise ValueError("Use letters, digits, hyphens or underscores in screenshot names")
+        raise ValueError("Use letters, digits, hyphens or underscores in recording names")
     now = datetime.now(ZoneInfo("America/Vancouver"))
     folder = RECORDINGS / now.strftime("%m-%d-%Y")
     folder.mkdir(parents=True, exist_ok=True)
     stamp = f"{now.hour % 12 or 12}:{now.minute:02}{'am' if now.hour < 12 else 'pm'}"
     for sequence in itertools.count(1):
         suffix = "" if sequence == 1 else f"-{sequence}"
-        output = folder / f"{stamp}_{label}{suffix}.png"
+        output = folder / f"{stamp}_{label}{suffix}.{extension}"
         try:
             output.touch(exist_ok=False)
             return output
         except FileExistsError:
             continue
+
+
+def reserve_screenshot(label: str) -> Path:
+    """Reserve a dated PNG in the project recordings folder."""
+    return _reserve_recording(label, "png")
 
 
 def setup_view(stage, asset: Path, view: str):
@@ -132,29 +143,110 @@ def setup_view(stage, asset: Path, view: str):
     return viewport
 
 
+def _capture_png(update, viewport, output: Path) -> None:
+    """Write the active Kit viewport at its current resolution."""
+    import omni.kit.renderer_capture
+    from omni.kit.viewport.utility import capture_viewport_to_file, next_viewport_frame_async
+
+    async def capture_pose():
+        # A capture scheduled immediately after a physics step can receive the previous pose.
+        await next_viewport_frame_async(viewport, 4)
+        await capture_viewport_to_file(viewport, str(output)).wait_for_result()
+
+    pending = asyncio.ensure_future(capture_pose())
+    deadline = time.monotonic() + 60
+    while not pending.done():
+        if time.monotonic() >= deadline:
+            pending.cancel()
+            raise TimeoutError("Viewport capture timed out")
+        update()
+    pending.result()
+    omni.kit.renderer_capture.acquire_renderer_capture_interface().wait_async_capture()
+    with output.open("rb") as image:
+        if image.read(8) != b"\x89PNG\r\n\x1a\n":
+            raise RuntimeError(f"Kit did not write a PNG at {output}")
+
+
 def capture_viewport(update, viewport, label: str) -> Path:
     """Wait for the Kit renderer and save the active view without advancing physics."""
-    import omni.kit.renderer_capture
-    from omni.kit.viewport.utility import capture_viewport_to_file
-
     for _ in range(60):
         update()
     output = reserve_screenshot(label)
     try:
-        capture = capture_viewport_to_file(viewport, str(output))
-        pending = asyncio.ensure_future(capture.wait_for_result())
-        deadline = time.monotonic() + 60
-        while not pending.done():
-            if time.monotonic() >= deadline:
-                pending.cancel()
-                raise TimeoutError("Viewport capture timed out")
-            update()
-        pending.result()
-        omni.kit.renderer_capture.acquire_renderer_capture_interface().wait_async_capture()
-        with output.open("rb") as image:
-            if image.read(8) != b"\x89PNG\r\n\x1a\n":
-                raise RuntimeError(f"Kit did not write a PNG at {output}")
+        _capture_png(update, viewport, output)
     except BaseException:
         output.unlink(missing_ok=True)
         raise
     return output
+
+
+@dataclass
+class ViewportVideo:
+    """One constant-rate video. Each capture samples the current simulation pose."""
+
+    path: Path
+    _capture: Callable[[Path], None]
+    _frames_dir: Path
+    frame_count: int = 0
+
+    def capture_frame(self) -> None:
+        self._capture(self._frames_dir / f"{self.frame_count:06d}.png")
+        self.frame_count += 1
+
+
+@contextmanager
+def record_viewport_video(update, viewport, label: str, fps: int = 30) -> Iterator[ViewportVideo]:
+    """Encode one frame per capture_frame() call, independent of wall-clock speed.
+
+    Supply a render-only update function. The caller controls physics steps between
+    captures. The completed H.264 MP4 becomes available at video.path on exit.
+    """
+    if not isinstance(fps, int) or fps < 1:
+        raise ValueError("fps must be a positive integer")
+    ffmpeg = shutil.which("ffmpeg")
+    if ffmpeg is None:
+        from imageio_ffmpeg import get_ffmpeg_exe
+
+        ffmpeg = get_ffmpeg_exe()
+
+    output = _reserve_recording(label, "mp4")
+    try:
+        with TemporaryDirectory(prefix=".capture-", dir=output.parent) as staging:
+            frames = Path(staging)
+            video = ViewportVideo(output, lambda path: _capture_png(update, viewport, path), frames)
+            yield video
+            if not video.frame_count:
+                raise ValueError("Cannot encode an empty video")
+            result = subprocess.run(
+                [
+                    ffmpeg,
+                    "-nostdin",
+                    "-loglevel",
+                    "error",
+                    "-framerate",
+                    str(fps),
+                    "-i",
+                    str(frames / "%06d.png"),
+                    "-frames:v",
+                    str(video.frame_count),
+                    "-vf",
+                    "pad=ceil(iw/2)*2:ceil(ih/2)*2",
+                    "-c:v",
+                    "libx264",
+                    "-pix_fmt",
+                    "yuv420p",
+                    "-crf",
+                    "18",
+                    "-movflags",
+                    "+faststart",
+                    str(frames / "encoded.mp4"),
+                ],
+                capture_output=True,
+                text=True,
+            )
+            if result.returncode:
+                raise RuntimeError(f"FFmpeg could not encode the recording: {result.stderr.strip()}")
+            (frames / "encoded.mp4").replace(output)
+    except BaseException:
+        output.unlink(missing_ok=True)
+        raise
