@@ -7,6 +7,37 @@ The registered tasks are:
 - `FactoryProject-Factory-ASTRIBOTS1-Direct`
 - `FactoryProject-Factory-Marl-ASTRIBOTS1-Direct`
 
+## Preview environment assets
+
+Open an empty Isaac Sim editor using the existing Isaac Sim Python environment:
+
+```bash
+cd ~/Desktop/Simulation/Projects/S1-Project
+~/env_isaaclab/bin/python scripts/preview.py
+```
+
+The scene starts with only `/World` and a neutral preview light. Physics starts stopped, so you can browse and
+arrange assets before running a task. This uses Isaac Sim directly and does not require the unfinished task configs.
+
+1. In **Window > Browsers > Content**, expand **Isaac Sim > Environments**. The script opens this folder for you.
+2. Start with **Simple_Warehouse** (`warehouse.usd` or `warehouse_multiple_shelves.usd`) for the factory aisle,
+   or **Simple_Room** (`simple_room.usd`) for a smaller scene. Browse **Props** for individual objects.
+3. Drag a USD onto **World** in the Stage panel to place it at the origin. Select it, then press **F** with the
+   viewport focused to frame it. Use **File > New** to clear the scene between candidates.
+4. Record each chosen asset's full USD URL in `vision.md`, along with its role (background, pickup table,
+   drop-off station, obstacle). If you arrange several assets, use **File > Save As** to save a project scene
+   under `src/Factory_Project/assets/data/environments/`; that scene can later be loaded by Isaac Lab.
+
+Assets stream from NVIDIA when first opened, so larger scenes can take time to download. The editor must be
+launched from a graphical desktop terminal. For a bounded check without a window:
+
+```bash
+~/env_isaaclab/bin/python scripts/preview.py --headless --max-frames 10
+```
+
+See NVIDIA's [Content Browser guide](https://docs.isaacsim.omniverse.nvidia.com/latest/utilities/content_browser.html)
+and [environment catalog](https://docs.isaacsim.omniverse.nvidia.com/latest/assets/usd_assets_environments.html).
+
 ## Implement the Task
 
 This project contains task scaffolding. Before running or training, replace `MISSING` configuration values and
