@@ -57,7 +57,7 @@ Source: author the full sequence in this project's [factory task](/home/eddie/De
 
 ## Current State
 
-The S1 can drive forward, strafe, turn, grasp and release a box in isolated physics tests. It has also been rendered inside the Full Warehouse. **Step 1 is now persisted in `assets/data/environments/factory.usda`:** S1 starts at `(4.45, 7.30, 0.09523)` m with a 180° heading, beside the east wall and shelf end, inside a fitted caution-tape square. Open it with `scripts/view_factory.py`. Episode-reset integration remains step 2; the task folders are still templates. [Robot validation](README.md#validation-in-isaac-sim-62) · [Warehouse screenshot](recordings/11-18-2026/11:15am_s1-render-test.png)
+The S1 can drive forward, strafe, turn, grasp and release a box in isolated physics tests. It has also been rendered inside the Full Warehouse. **Step 1 is now persisted in `src/Factory_Project/assets/data/environments/factory.usda`:** S1 starts at `(4.45, 7.30, 0.09523)` m with a 180° heading, beside the east wall and shelf end, inside a fitted caution-tape square. Open it with `scripts/view_factory.py`. Two reloads restored the same starting pose; a two-second idle physics check measured about 15 mm of settling movement. Episode-reset integration remains step 2; the task folders are still templates. [Robot validation](README.md#validation-in-isaac-sim-62) · [Boundary screenshot](recordings/11-18-2026/12:25pm_test-boundary.png)
 
 ### Implementation phases
 
@@ -68,7 +68,7 @@ flowchart TD
     verified["Verified · S1 component tests and warehouse render"]:::verified
 
     subgraph environment["Environment and November 19 demo"]
-        spawn["1 · Saved warehouse scene and S1 spawn<br/>Fixed pose, asset neutral joints and fitted caution tape"]:::env
+        spawn["1 · Verified warehouse scene and S1 spawn<br/>Fixed pose, asset neutral joints and fitted caution tape"]:::verified
         reset["2 · Make reset repeatable<br/>Restore the pose, clear velocities and reset drive targets"]:::env
         check{"Same pose after a fresh launch<br/>and after driving away and resetting?"}:::decision
         stations["3 · Set up the two workstations<br/>Fix the pickup box pose, drop zone and clear aisle route"]:::env
