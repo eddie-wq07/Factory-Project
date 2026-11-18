@@ -42,7 +42,7 @@ The PhysX tensor interface accepts radians and radians/s. When editing a USD ang
 
 The standalone motion check exercised the floating base at 60 and 120 Hz on a flat floor. On CPU at 120 Hz, separate 1.5-second commands moved it 0.429 m forward, 0.414 m left and 1.111 rad around its vertical axis. The bilateral grasp check used a fixed chassis to isolate the fingers. Each hand held a 35 mm, 20 g block against gravity for two seconds, then released it.
 
-[Simulated reach](recordings/11-18-2026/12:46am_s1-forward-reach.png) · [Four wheel assemblies](recordings/11-18-2026/12:24am_s1-four-wheels.png) · [Upright head camera](recordings/11-18-2026/12:27am_s1-head-upright.png)
+[Simulated reach](recordings/misc/11-18-2026/12:46am_s1-forward-reach.png) · [Four wheel assemblies](recordings/misc/11-18-2026/12:24am_s1-four-wheels.png) · [Upright head camera](recordings/misc/11-18-2026/12:27am_s1-head-upright.png)
 
 ## Preview environment assets
 
@@ -214,3 +214,18 @@ uv run isaaclab --editor --isaac_path <isaac-sim-path>
 If Pylance or basedpyright cannot resolve modules, confirm that the selected interpreter matches the one used to run the
 setup command, then reload the editor window. To add a missing extension or reduce indexing memory, edit the `extraPaths`
 array in the root `pyrightconfig.json`; remove simulator extension directories that the project does not use.
+
+### Persistent factory starting point
+
+```bash
+~/env_isaaclab/bin/python scripts/view_factory.py
+~/env_isaaclab/bin/python scripts/view_factory.py --screenshot test-boundary
+```
+
+The saved scene is `src/Factory_Project/assets/data/environments/factory.usda`. It places S1 at `(4.45, 7.30, 0.09523)` metres, heading 180°, beside the east wall and shelf end. Reopening this USD restores the same pose and the robot asset's neutral joint configuration. The RL task templates do not yet implement episode resets.
+
+Four references to the supplied NVIDIA SimReady tape form a square with a 0.596852 m inner side and 0.15 m tape width. Its inner edges match the full chassis-and-wheel bounding square; the narrower axis has about 4.6 mm clearance per side. Tape is decorative, with physics disabled, and raised 1 mm above the floor. `scripts/build_factory.py` regenerates the scene from measured robot bounds. Robot and tape dependencies are local; the warehouse still uses NVIDIA's hosted USD and requires network access on an uncached machine.
+
+Requested captures go in `recordings/MM-DD-YYYY/`. Add `--diagnostic` to either screenshot viewer for unprompted inspection captures under `recordings/misc/MM-DD-YYYY/`. Earlier diagnostic screenshots were moved there; the requested render test and wheel video remain in the day folder. Capture filenames use Vancouver local time.
+
+[Boundary screenshot](recordings/11-18-2026/12:25pm_test-boundary.png). A two-second idle physics check measured approximately 15 mm of base settling/drift; this is a fixed initial pose, not an active parking controller.

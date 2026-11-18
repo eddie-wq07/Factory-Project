@@ -14,6 +14,7 @@ def main():
     parser.add_argument("--asset", type=Path, default=ROBOT_USD, help="Robot USD to reference")
     parser.add_argument("--view", choices=VIEWS, default="three-quarter")
     parser.add_argument("--screenshot", metavar="NAME", help="Save a headless PNG and exit")
+    parser.add_argument("--diagnostic", action="store_true", help="Save under recordings/misc/")
     args = parser.parse_args()
     if not args.asset.is_file():
         parser.error(f"Robot USD is missing: {args.asset}")
@@ -39,7 +40,7 @@ def main():
             while app.is_running():
                 app.update()
         else:
-            output = capture_viewport(app.update, viewport, args.screenshot)
+            output = capture_viewport(app.update, viewport, args.screenshot, diagnostic=args.diagnostic)
             print(f"SCREENSHOT_SAVED {output}", flush=True)
     except KeyboardInterrupt:
         status = 130

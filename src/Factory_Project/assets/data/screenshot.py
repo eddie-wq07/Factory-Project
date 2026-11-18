@@ -33,12 +33,12 @@ VIEWS = (*EXTERIOR_VIEWS, *ONBOARD_VIEWS)
 RESOLUTION = (1280, 960)
 
 
-def _reserve_recording(label: str, extension: str) -> Path:
+def _reserve_recording(label: str, extension: str, *, diagnostic: bool = False) -> Path:
     """Claim a dated capture path without overwriting another session."""
     if not re.fullmatch(r"[a-zA-Z0-9_-]+", label):
         raise ValueError("Use letters, digits, hyphens or underscores in recording names")
     now = datetime.now(ZoneInfo("America/Vancouver"))
-    folder = RECORDINGS / now.strftime("%m-%d-%Y")
+    folder = (RECORDINGS / "misc" if diagnostic else RECORDINGS) / now.strftime("%m-%d-%Y")
     folder.mkdir(parents=True, exist_ok=True)
     stamp = f"{now.hour % 12 or 12}:{now.minute:02}{'am' if now.hour < 12 else 'pm'}"
     for sequence in itertools.count(1):
@@ -51,9 +51,9 @@ def _reserve_recording(label: str, extension: str) -> Path:
             continue
 
 
-def reserve_screenshot(label: str) -> Path:
+def reserve_screenshot(label: str, *, diagnostic: bool = False) -> Path:
     """Reserve a dated PNG in the project recordings folder."""
-    return _reserve_recording(label, "png")
+    return _reserve_recording(label, "png", diagnostic=diagnostic)
 
 
 def setup_view(stage, asset: Path, view: str):
@@ -167,11 +167,11 @@ def _capture_png(update, viewport, output: Path) -> None:
             raise RuntimeError(f"Kit did not write a PNG at {output}")
 
 
-def capture_viewport(update, viewport, label: str) -> Path:
+def capture_viewport(update, viewport, label: str, *, diagnostic: bool = False) -> Path:
     """Wait for the Kit renderer and save the active view without advancing physics."""
     for _ in range(60):
         update()
-    output = reserve_screenshot(label)
+    output = reserve_screenshot(label, diagnostic=diagnostic)
     try:
         _capture_png(update, viewport, output)
     except BaseException:
