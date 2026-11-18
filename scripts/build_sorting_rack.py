@@ -3,6 +3,8 @@
 import json
 from pathlib import Path
 
+from label_factory import location
+
 ROOT = Path(__file__).resolve().parents[1]
 ENV = ROOT / "src/Factory_Project/assets/data/environments"
 
@@ -75,6 +77,35 @@ def main():
             item.GetPrim().SetCustomDataByKey("sourceAisle", entry["aisle"])
             entry["sorting_prim"] = str(item.GetPath())
             entry["sorting_position"] = list(target)
+            aisle_centers = (-22.83, -17.91, -12.95, -7.99, -3.02, 1.93)
+            side = int(entry["center"][0] > aisle_centers[entry["aisle"] - 1])
+            address = location(entry["aisle"] - 1, side, entry["center"][1])
+            entry["rack_address"] = address
+            # Three-inch squares fit the narrow front rail, one pair below each item.
+            for name, material_name, offset in (("Address", address, 0.0411), ("AprilTag", "AprilTag", -0.0411)):
+                material = UsdShade.Material.Get(stage, "/World/StickerMaterials/" + material_name)
+                if not material:
+                    raise RuntimeError(f"Missing existing sticker material: {material_name}")
+                sticker = UsdGeom.Mesh.Define(stage, f"/World/SortingRack/Rack/SlotLabels/Item{entry['slot']}/{name}")
+                x = target[0] - 1 + offset
+                z = shelf - 0.04
+                half = 0.0762 / 2
+                sticker.CreatePointsAttr(
+                    [
+                        (x - half, -0.652, z - half),
+                        (x + half, -0.652, z - half),
+                        (x + half, -0.652, z + half),
+                        (x - half, -0.652, z + half),
+                    ]
+                )
+                sticker.CreateFaceVertexCountsAttr([4])
+                sticker.CreateFaceVertexIndicesAttr([0, 1, 2, 3])
+                sticker.CreateSubdivisionSchemeAttr("none")
+                sticker.CreateDoubleSidedAttr(True)
+                UsdGeom.PrimvarsAPI(sticker).CreatePrimvar("st", Sdf.ValueTypeNames.TexCoord2fArray, "vertex").Set(
+                    [(0, 0), (1, 0), (1, 1), (0, 1)]
+                )
+                UsdShade.MaterialBindingAPI.Apply(sticker.GetPrim()).Bind(material)
 
         image = Image.new("RGB", (1024, 200), "white")
         font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 100)

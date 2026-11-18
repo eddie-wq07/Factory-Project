@@ -8,3 +8,5 @@ The original rack and its dependencies are local under `rack/`. The `sorting_rac
 Six items are internally referenced from the existing factory, one from each source aisle. `selection.json` records the original prims and new placements. Two items occupy each of three lower shelves; the top is empty. Objects retain source scale, materials and carton stickers. Racks and items remain static; no grasp or physics-control logic was added. The duplicated warehouse objects retain the factory's existing hosted-asset dependency.
 
 The title texture reads exactly "To be sorted.". All additions compose through the main factory USD and can be rebuilt with `scripts/build_sorting_rack.py`. The base factory builder preserves the sorting layer. Only one sorting rack is created.
+
+Each slot has an address sticker and matching duplicated decorative AprilTag on the front rack rail beneath its item. All rail stickers are 3-inch squares to fit the narrow rail. Addresses follow the original source locations and are recorded as `rack_address` in `selection.json`; existing object stickers remain unchanged.
