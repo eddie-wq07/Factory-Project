@@ -6,11 +6,13 @@ Visual navigation + pick and place manipulation.
 
 ## Environment
 
-A small factory scene in Isaac Lab. Two workstations connected by an aisle.
+Use NVIDIA Isaac Sim's **Full Warehouse** scene (`full_warehouse.usd`) as the environment for Astribot S1 in Isaac Lab.
 
-Include a pickup table, a drop-off area, and obstacles. Vary object positions and obstacle placement as the task improves.
+A full-sized industrial warehouse containing shelving, obstacles on the floor, and forklifts. The existing warehouse layout is the base scene for visual navigation and pick-and-place tasks.
 
-Source: build the floor with Isaac Lab's [GroundPlaneCfg](/home/eddie/IsaacLab/source/isaaclab/isaaclab/sim/spawners/from_files/from_files_cfg.py) and the tables, obstacles, and box with [CuboidCfg](/home/eddie/IsaacLab/source/isaaclab/isaaclab/sim/spawners/shapes/shapes_cfg.py).
+Source: [Full Warehouse — NVIDIA Isaac Sim 6.2 environment catalog](https://docs.isaacsim.omniverse.nvidia.com/6.2.0/assets/usd_assets_environments.html#warehouses).
+
+USD asset: [full_warehouse.usd](https://omniverse-content-production.s3-us-west-2.amazonaws.com/Assets/Isaac/6.2/Isaac/Environments/Simple_Warehouse/full_warehouse.usd).
 
 ## Robot
 
