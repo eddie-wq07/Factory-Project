@@ -6,24 +6,41 @@
     "asset": "./Props/SM_CardBoxB_01.usd",
     "family": "SM_CardBoxB_01",
     "dimensions": [
-      0.5018361455378795,
-      0.5003451365644054,
-      0.4999999888241291
+      0.5018,
+      0.5003,
+      0.5
     ],
     "center": [
-      -25.549254495513264,
-      16.179999999999996,
-      3.060000146999952
+      -25.5493,
+      16.18,
+      3.06
     ],
     "slot": 1,
     "level": 1,
     "sorting_prim": "/World/SortingRack/Item1",
     "sorting_position": [
-      0.27,
-      3.25,
-      0.6262
+      0.03,
+      2.977,
+      0.875
     ],
-    "rack_address": "A2"
+    "rack_address": "A2",
+    "kind": "carton",
+    "material": "cardboard",
+    "mass": 3.0,
+    "yaw_deg": -90.0,
+    "source_scale": 1.0,
+    "resize": 1.0,
+    "size": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "box_offset": [
+      -0.0,
+      -0.0,
+      0.25
+    ],
+    "box_yaw": 0.0
   },
   {
     "name": "Crate_15940",
@@ -32,24 +49,41 @@
     "asset": "./Props/SM_CratePlastic_A_02.usd",
     "family": "SM_CratePlastic_A_02",
     "dimensions": [
-      0.4994022836393608,
-      0.61636842211119,
-      0.2512767163378733
+      0.4994,
+      0.6164,
+      0.2513
     ],
     "center": [
-      -15.712190704560875,
-      9.400502911507544,
-      1.4256378431848173
+      -15.7122,
+      9.4005,
+      1.4256
     ],
     "slot": 2,
-    "level": 1,
+    "level": 2,
     "sorting_prim": "/World/SortingRack/Item2",
     "sorting_position": [
-      1.73,
-      3.25,
-      0.6262
+      0.27,
+      2.9767,
+      1.3507
     ],
-    "rack_address": "F8"
+    "rack_address": "F8",
+    "kind": "crate",
+    "material": "plastic",
+    "mass": 1.8,
+    "yaw_deg": 0.0,
+    "source_scale": 1.0,
+    "resize": 1.0,
+    "size": [
+      0.4994,
+      0.6164,
+      0.2513
+    ],
+    "box_offset": [
+      0.0,
+      0.00963,
+      0.12564
+    ],
+    "box_yaw": -1.570796
   },
   {
     "name": "Crate_16579",
@@ -58,50 +92,84 @@
     "asset": "./Props/SM_CratePlastic_B_02.usd",
     "family": "SM_CratePlastic_B_02",
     "dimensions": [
-      0.43677489258107016,
-      0.5299291873739094,
-      0.13627781797999994
+      0.4368,
+      0.5299,
+      0.1363
     ],
     "center": [
-      -15.164837646484376,
-      22.83366392140986,
-      2.8681388684967914
+      -15.1648,
+      22.8337,
+      2.8681
     ],
     "slot": 3,
     "level": 2,
     "sorting_prim": "/World/SortingRack/Item3",
     "sorting_position": [
-      0.27,
-      3.25,
-      1.2264
+      1.73,
+      2.9454,
+      1.2932
     ],
-    "rack_address": "H4"
+    "rack_address": "H4",
+    "kind": "crate",
+    "material": "plastic",
+    "mass": 1.0,
+    "yaw_deg": -90.0,
+    "source_scale": 1.0,
+    "resize": 1.0,
+    "size": [
+      0.4368,
+      0.5299,
+      0.1363
+    ],
+    "box_offset": [
+      -0.0,
+      -0.0024,
+      0.06814
+    ],
+    "box_yaw": 0.0
   },
   {
-    "name": "Box_19189",
-    "path": "/World/Factory/Box_19189",
+    "name": "Box_19347",
+    "path": "/World/Factory/Box_19347",
     "aisle": 4,
-    "asset": "./Props/SM_CardBoxA_02_708.usd",
-    "family": "SM_CardBoxA_02",
+    "asset": "./Props/SM_CardBoxA_01.usd",
+    "family": "SM_CardBoxA_01",
     "dimensions": [
-      0.8041697985579077,
-      0.645478226443938,
-      0.5032872468988463
+      0.7133,
+      0.5171,
+      0.5
     ],
     "center": [
-      -10.46334095645527,
-      19.5749488635985,
-      2.0516433754941064
+      -10.4494,
+      20.32,
+      3.26
     ],
     "slot": 4,
-    "level": 2,
+    "level": 1,
     "sorting_prim": "/World/SortingRack/Item4",
     "sorting_position": [
-      1.73,
-      3.25,
-      1.2264
+      1.0,
+      2.9055,
+      0.8035
     ],
-    "rack_address": "K3"
+    "rack_address": "K3",
+    "kind": "carton",
+    "material": "cardboard",
+    "mass": 2.5,
+    "yaw_deg": 0.0,
+    "source_scale": 0.714,
+    "resize": 0.714,
+    "size": [
+      0.357,
+      0.4998,
+      0.357
+    ],
+    "box_offset": [
+      0.0,
+      0.0,
+      0.1785
+    ],
+    "box_yaw": -1.570796
   },
   {
     "name": "SM_BottlePlasticD_2",
@@ -110,49 +178,83 @@
     "asset": "./Props/SM_BottlePlasticD_01.usd",
     "family": "SM_BottlePlasticD_01",
     "dimensions": [
-      0.18057163454893077,
-      0.3021726746456057,
-      0.06083558590548333
+      0.1806,
+      0.3022,
+      0.0608
     ],
     "center": [
-      -2.425400772180078,
-      11.609503482648677,
-      0.03057083097703697
+      -2.4254,
+      11.6095,
+      0.0306
     ],
     "slot": 5,
-    "level": 3,
+    "level": 2,
     "sorting_prim": "/World/SortingRack/Item5",
     "sorting_position": [
-      0.27,
-      3.25,
-      1.8263999999999998
+      1.0,
+      2.7937,
+      1.3667
     ],
-    "rack_address": "O8"
+    "rack_address": "O8",
+    "kind": "bottle",
+    "material": "plastic",
+    "mass": 0.4,
+    "yaw_deg": 0.0,
+    "source_scale": 1.0,
+    "resize": 1.0,
+    "size": [
+      0.1334,
+      0.0608,
+      0.2833
+    ],
+    "box_offset": [
+      0.0,
+      0.0,
+      0.14166
+    ],
+    "box_yaw": -1.570796
   },
   {
-    "name": "Box_33802",
-    "path": "/World/Factory/Box_33802",
+    "name": "Box_33430",
+    "path": "/World/Factory/Box_33430",
     "aisle": 6,
     "asset": "./Props/SM_CardBoxC_01.usd",
     "family": "SM_CardBoxC_01",
     "dimensions": [
-      0.90437299436138,
-      0.9043729943613812,
-      0.4374999902211129
+      0.5443,
+      0.5443,
+      0.25
     ],
     "center": [
-      -0.45000000000000023,
-      24.240000000000006,
-      0.42874906050974726
+      -0.46,
+      24.45,
+      3.185
     ],
     "slot": 6,
-    "level": 3,
+    "level": 1,
     "sorting_prim": "/World/SortingRack/Item6",
     "sorting_position": [
-      1.73,
-      3.25,
-      1.8263999999999998
+      1.97,
+      2.977,
+      0.75
     ],
-    "rack_address": "Q4"
+    "rack_address": "Q4",
+    "kind": "carton",
+    "material": "cardboard",
+    "mass": 2.0,
+    "yaw_deg": -90.0,
+    "source_scale": 1.0,
+    "resize": 1.0,
+    "size": [
+      0.5,
+      0.5,
+      0.25
+    ],
+    "box_offset": [
+      -0.0,
+      -0.0,
+      0.125
+    ],
+    "box_yaw": 0.0
   }
 ]

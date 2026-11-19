@@ -1,0 +1,956 @@
+{
+  "version": 1,
+  "max_stack": 3,
+  "max_stack_height": 1.5,
+  "front_inset": 0.03,
+  "spawn": {
+    "position": [
+      4.45,
+      7.3,
+      0.09523
+    ],
+    "yaw": 3.141592653589793
+  },
+  "rack": {
+    "position": [
+      1.0,
+      3.3,
+      0.0
+    ],
+    "front_beam_y": 2.697,
+    "normal": [
+      0,
+      -1
+    ],
+    "shelf_tops": [
+      0.623,
+      1.223,
+      1.823
+    ]
+  },
+  "items": [
+    {
+      "address": "A2",
+      "prim": "/World/SortingRack/Item1",
+      "source": "/World/Factory/Box_4013",
+      "family": "SM_CardBoxB_01",
+      "kind": "carton",
+      "material": "cardboard",
+      "mass": 3.0,
+      "level": 1,
+      "center": [
+        0.03,
+        2.977,
+        0.875
+      ],
+      "size": [
+        0.5,
+        0.5,
+        0.5
+      ],
+      "box_offset": [
+        -0.0,
+        -0.0,
+        0.25
+      ],
+      "box_yaw": 0.0
+    },
+    {
+      "address": "F8",
+      "prim": "/World/SortingRack/Item2",
+      "source": "/World/Factory/Crate_15940",
+      "family": "SM_CratePlastic_A_02",
+      "kind": "crate",
+      "material": "plastic",
+      "mass": 1.8,
+      "level": 2,
+      "center": [
+        0.27,
+        2.9767,
+        1.3507
+      ],
+      "size": [
+        0.4994,
+        0.6164,
+        0.2513
+      ],
+      "box_offset": [
+        0.0,
+        0.00963,
+        0.12564
+      ],
+      "box_yaw": -1.570796
+    },
+    {
+      "address": "H4",
+      "prim": "/World/SortingRack/Item3",
+      "source": "/World/Factory/Crate_16579",
+      "family": "SM_CratePlastic_B_02",
+      "kind": "crate",
+      "material": "plastic",
+      "mass": 1.0,
+      "level": 2,
+      "center": [
+        1.73,
+        2.9454,
+        1.2932
+      ],
+      "size": [
+        0.4368,
+        0.5299,
+        0.1363
+      ],
+      "box_offset": [
+        -0.0,
+        -0.0024,
+        0.06814
+      ],
+      "box_yaw": 0.0
+    },
+    {
+      "address": "K3",
+      "prim": "/World/SortingRack/Item4",
+      "source": "/World/Factory/Box_19347",
+      "family": "SM_CardBoxA_01",
+      "kind": "carton",
+      "material": "cardboard",
+      "mass": 2.5,
+      "level": 1,
+      "center": [
+        1.0,
+        2.9055,
+        0.8035
+      ],
+      "size": [
+        0.357,
+        0.4998,
+        0.357
+      ],
+      "box_offset": [
+        0.0,
+        0.0,
+        0.1785
+      ],
+      "box_yaw": -1.570796
+    },
+    {
+      "address": "O8",
+      "prim": "/World/SortingRack/Item5",
+      "source": "/World/Factory/SM_BottlePlasticD_2",
+      "family": "SM_BottlePlasticD_01",
+      "kind": "bottle",
+      "material": "plastic",
+      "mass": 0.4,
+      "level": 2,
+      "center": [
+        1.0,
+        2.7937,
+        1.3667
+      ],
+      "size": [
+        0.1334,
+        0.0608,
+        0.2833
+      ],
+      "box_offset": [
+        0.0,
+        0.0,
+        0.14166
+      ],
+      "box_yaw": -1.570796
+    },
+    {
+      "address": "Q4",
+      "prim": "/World/SortingRack/Item6",
+      "source": "/World/Factory/Box_33430",
+      "family": "SM_CardBoxC_01",
+      "kind": "carton",
+      "material": "cardboard",
+      "mass": 2.0,
+      "level": 1,
+      "center": [
+        1.97,
+        2.977,
+        0.75
+      ],
+      "size": [
+        0.5,
+        0.5,
+        0.25
+      ],
+      "box_offset": [
+        -0.0,
+        -0.0,
+        0.125
+      ],
+      "box_yaw": 0.0
+    }
+  ],
+  "destinations": [
+    {
+      "address": "A2",
+      "aisle": 1,
+      "normal": [
+        1,
+        0
+      ],
+      "edge": [
+        -23.55,
+        14.9
+      ],
+      "deck_z": 0.144,
+      "pallets": [
+        {
+          "center": [
+            -24.05,
+            14.9
+          ],
+          "half_extents": [
+            0.5,
+            0.6
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "offset": -0.35,
+          "front": [
+            -23.58,
+            14.55
+          ],
+          "bin": false,
+          "stock": [
+            {
+              "prim": "/World/DropZones/A2/Stock_c0_t0",
+              "kind": "carton",
+              "family": "SM_CardBoxB_01",
+              "mass": 3.0,
+              "center": [
+                -23.83,
+                14.55,
+                0.396
+              ],
+              "size": [
+                0.5,
+                0.5,
+                0.5
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.25
+              ],
+              "box_yaw": 0.0
+            }
+          ]
+        },
+        {
+          "offset": 0.35,
+          "front": [
+            -23.58,
+            15.25
+          ],
+          "bin": false,
+          "stock": [
+            {
+              "prim": "/World/DropZones/A2/Stock_c1_t0",
+              "kind": "carton",
+              "family": "SM_CardBoxB_01",
+              "mass": 3.0,
+              "center": [
+                -23.83,
+                15.25,
+                0.396
+              ],
+              "size": [
+                0.5,
+                0.5,
+                0.5
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.25
+              ],
+              "box_yaw": 0.0
+            },
+            {
+              "prim": "/World/DropZones/A2/Stock_c1_t1",
+              "kind": "carton",
+              "family": "SM_CardBoxB_01",
+              "mass": 3.0,
+              "center": [
+                -23.83,
+                15.25,
+                0.898
+              ],
+              "size": [
+                0.5,
+                0.5,
+                0.5
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.25
+              ],
+              "box_yaw": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "address": "F8",
+      "aisle": 2,
+      "normal": [
+        -1,
+        0
+      ],
+      "edge": [
+        -17.02,
+        10.9
+      ],
+      "deck_z": 0.144,
+      "pallets": [
+        {
+          "center": [
+            -16.52,
+            11.55
+          ],
+          "half_extents": [
+            0.5,
+            0.6
+          ]
+        },
+        {
+          "center": [
+            -16.52,
+            10.25
+          ],
+          "half_extents": [
+            0.5,
+            0.6
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "offset": -0.65,
+          "front": [
+            -16.99,
+            11.55
+          ],
+          "bin": false,
+          "stock": [
+            {
+              "prim": "/World/DropZones/F8/Stock_c0_t0",
+              "kind": "crate",
+              "family": "SM_CratePlastic_A_02",
+              "mass": 1.8,
+              "center": [
+                -16.7403,
+                11.55,
+                0.2717
+              ],
+              "size": [
+                0.4994,
+                0.6164,
+                0.2513
+              ],
+              "box_offset": [
+                -0.0,
+                0.00963,
+                0.12564
+              ],
+              "box_yaw": -1.570796
+            },
+            {
+              "prim": "/World/DropZones/F8/Stock_c0_t1",
+              "kind": "crate",
+              "family": "SM_CratePlastic_A_02",
+              "mass": 1.8,
+              "center": [
+                -16.7403,
+                11.55,
+                0.525
+              ],
+              "size": [
+                0.4994,
+                0.6164,
+                0.2513
+              ],
+              "box_offset": [
+                -0.0,
+                0.00963,
+                0.12564
+              ],
+              "box_yaw": -1.570796
+            },
+            {
+              "prim": "/World/DropZones/F8/Stock_c0_t2",
+              "kind": "crate",
+              "family": "SM_CratePlastic_A_02",
+              "mass": 1.8,
+              "center": [
+                -16.7403,
+                11.55,
+                0.7783
+              ],
+              "size": [
+                0.4994,
+                0.6164,
+                0.2513
+              ],
+              "box_offset": [
+                -0.0,
+                0.00963,
+                0.12564
+              ],
+              "box_yaw": -1.570796
+            }
+          ]
+        },
+        {
+          "offset": 0.65,
+          "front": [
+            -16.99,
+            10.25
+          ],
+          "bin": false,
+          "stock": [
+            {
+              "prim": "/World/DropZones/F8/Stock_c1_t0",
+              "kind": "crate",
+              "family": "SM_CratePlastic_A_02",
+              "mass": 1.8,
+              "center": [
+                -16.7403,
+                10.25,
+                0.2717
+              ],
+              "size": [
+                0.4994,
+                0.6164,
+                0.2513
+              ],
+              "box_offset": [
+                -0.0,
+                0.00963,
+                0.12564
+              ],
+              "box_yaw": -1.570796
+            },
+            {
+              "prim": "/World/DropZones/F8/Stock_c1_t1",
+              "kind": "crate",
+              "family": "SM_CratePlastic_A_02",
+              "mass": 1.8,
+              "center": [
+                -16.7403,
+                10.25,
+                0.525
+              ],
+              "size": [
+                0.4994,
+                0.6164,
+                0.2513
+              ],
+              "box_offset": [
+                -0.0,
+                0.00963,
+                0.12564
+              ],
+              "box_yaw": -1.570796
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "address": "H4",
+      "aisle": 3,
+      "normal": [
+        1,
+        0
+      ],
+      "edge": [
+        -13.83,
+        22.9
+      ],
+      "deck_z": 0.288,
+      "pallets": [
+        {
+          "center": [
+            -14.33,
+            22.9
+          ],
+          "half_extents": [
+            0.5,
+            0.6
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "offset": -0.33,
+          "front": [
+            -13.86,
+            22.57
+          ],
+          "bin": false,
+          "stock": [
+            {
+              "prim": "/World/DropZones/H4/Stock_c0_t0",
+              "kind": "crate",
+              "family": "SM_CratePlastic_B_02",
+              "mass": 1.0,
+              "center": [
+                -14.0784,
+                22.57,
+                0.3581
+              ],
+              "size": [
+                0.4368,
+                0.5299,
+                0.1363
+              ],
+              "box_offset": [
+                0.0,
+                -0.0024,
+                0.06814
+              ],
+              "box_yaw": 0.0
+            },
+            {
+              "prim": "/World/DropZones/H4/Stock_c0_t1",
+              "kind": "crate",
+              "family": "SM_CratePlastic_B_02",
+              "mass": 1.0,
+              "center": [
+                -14.0784,
+                22.57,
+                0.4965
+              ],
+              "size": [
+                0.4368,
+                0.5299,
+                0.1363
+              ],
+              "box_offset": [
+                0.0,
+                -0.0024,
+                0.06814
+              ],
+              "box_yaw": 0.0
+            }
+          ]
+        },
+        {
+          "offset": 0.33,
+          "front": [
+            -13.86,
+            23.23
+          ],
+          "bin": false,
+          "stock": []
+        }
+      ]
+    },
+    {
+      "address": "K3",
+      "aisle": 4,
+      "normal": [
+        1,
+        0
+      ],
+      "edge": [
+        -8.73,
+        20.2
+      ],
+      "deck_z": 0.144,
+      "pallets": [
+        {
+          "center": [
+            -9.23,
+            20.2
+          ],
+          "half_extents": [
+            0.5,
+            0.6
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "offset": -0.35,
+          "front": [
+            -8.76,
+            19.85
+          ],
+          "bin": false,
+          "stock": [
+            {
+              "prim": "/World/DropZones/K3/Stock_c0_t0",
+              "kind": "carton",
+              "family": "SM_CardBoxA_01",
+              "mass": 2.5,
+              "center": [
+                -8.9385,
+                19.85,
+                0.3245
+              ],
+              "size": [
+                0.357,
+                0.4998,
+                0.357
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.1785
+              ],
+              "box_yaw": -1.570796
+            },
+            {
+              "prim": "/World/DropZones/K3/Stock_c0_t1",
+              "kind": "carton",
+              "family": "SM_CardBoxA_01",
+              "mass": 2.5,
+              "center": [
+                -8.9385,
+                19.85,
+                0.6835
+              ],
+              "size": [
+                0.357,
+                0.4998,
+                0.357
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.1785
+              ],
+              "box_yaw": -1.570796
+            }
+          ]
+        },
+        {
+          "offset": 0.35,
+          "front": [
+            -8.76,
+            20.55
+          ],
+          "bin": false,
+          "stock": [
+            {
+              "prim": "/World/DropZones/K3/Stock_c1_t0",
+              "kind": "carton",
+              "family": "SM_CardBoxA_01",
+              "mass": 2.5,
+              "center": [
+                -8.9385,
+                20.55,
+                0.3245
+              ],
+              "size": [
+                0.357,
+                0.4998,
+                0.357
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.1785
+              ],
+              "box_yaw": -1.570796
+            },
+            {
+              "prim": "/World/DropZones/K3/Stock_c1_t1",
+              "kind": "carton",
+              "family": "SM_CardBoxA_01",
+              "mass": 2.5,
+              "center": [
+                -8.9385,
+                20.55,
+                0.6835
+              ],
+              "size": [
+                0.357,
+                0.4998,
+                0.357
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.1785
+              ],
+              "box_yaw": -1.570796
+            },
+            {
+              "prim": "/World/DropZones/K3/Stock_c1_t2",
+              "kind": "carton",
+              "family": "SM_CardBoxA_01",
+              "mass": 2.5,
+              "center": [
+                -8.9385,
+                20.55,
+                1.0425
+              ],
+              "size": [
+                0.357,
+                0.4998,
+                0.357
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.1785
+              ],
+              "box_yaw": -1.570796
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "address": "O8",
+      "aisle": 5,
+      "normal": [
+        0,
+        -1
+      ],
+      "edge": [
+        -0.55,
+        7.35
+      ],
+      "deck_z": 0.144,
+      "pallets": [
+        {
+          "center": [
+            -0.55,
+            7.85
+          ],
+          "half_extents": [
+            0.6,
+            0.5
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "offset": 0.0,
+          "front": [
+            -0.55,
+            7.38
+          ],
+          "bin": true,
+          "stock": [
+            {
+              "prim": "/World/DropZones/O8/Stock_c0_t0",
+              "kind": "crate",
+              "family": "SM_CratePlastic_A_02",
+              "mass": 1.8,
+              "center": [
+                -0.55,
+                7.6297,
+                0.2717
+              ],
+              "size": [
+                0.4994,
+                0.6164,
+                0.2513
+              ],
+              "box_offset": [
+                0.0,
+                0.00963,
+                0.12564
+              ],
+              "box_yaw": -1.570796
+            },
+            {
+              "prim": "/World/DropZones/O8/Stock_c0_t1",
+              "kind": "crate",
+              "family": "SM_CratePlastic_A_02",
+              "mass": 1.8,
+              "center": [
+                -0.55,
+                7.6297,
+                0.525
+              ],
+              "size": [
+                0.4994,
+                0.6164,
+                0.2513
+              ],
+              "box_offset": [
+                0.0,
+                0.00963,
+                0.12564
+              ],
+              "box_yaw": -1.570796
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "address": "Q4",
+      "aisle": 6,
+      "normal": [
+        1,
+        0
+      ],
+      "edge": [
+        1.12,
+        22.9
+      ],
+      "deck_z": 0.144,
+      "pallets": [
+        {
+          "center": [
+            0.62,
+            22.9
+          ],
+          "half_extents": [
+            0.5,
+            0.6
+          ]
+        }
+      ],
+      "columns": [
+        {
+          "offset": -0.35,
+          "front": [
+            1.09,
+            22.55
+          ],
+          "bin": false,
+          "stock": [
+            {
+              "prim": "/World/DropZones/Q4/Stock_c0_t0",
+              "kind": "carton",
+              "family": "SM_CardBoxC_01",
+              "mass": 2.0,
+              "center": [
+                0.84,
+                22.55,
+                0.271
+              ],
+              "size": [
+                0.5,
+                0.5,
+                0.25
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.125
+              ],
+              "box_yaw": 0.0
+            },
+            {
+              "prim": "/World/DropZones/Q4/Stock_c0_t1",
+              "kind": "carton",
+              "family": "SM_CardBoxC_01",
+              "mass": 2.0,
+              "center": [
+                0.84,
+                22.55,
+                0.523
+              ],
+              "size": [
+                0.5,
+                0.5,
+                0.25
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.125
+              ],
+              "box_yaw": 0.0
+            },
+            {
+              "prim": "/World/DropZones/Q4/Stock_c0_t2",
+              "kind": "carton",
+              "family": "SM_CardBoxC_01",
+              "mass": 2.0,
+              "center": [
+                0.84,
+                22.55,
+                0.775
+              ],
+              "size": [
+                0.5,
+                0.5,
+                0.25
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.125
+              ],
+              "box_yaw": 0.0
+            }
+          ]
+        },
+        {
+          "offset": 0.35,
+          "front": [
+            1.09,
+            23.25
+          ],
+          "bin": false,
+          "stock": [
+            {
+              "prim": "/World/DropZones/Q4/Stock_c1_t0",
+              "kind": "carton",
+              "family": "SM_CardBoxC_01",
+              "mass": 2.0,
+              "center": [
+                0.84,
+                23.25,
+                0.271
+              ],
+              "size": [
+                0.5,
+                0.5,
+                0.25
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.125
+              ],
+              "box_yaw": 0.0
+            },
+            {
+              "prim": "/World/DropZones/Q4/Stock_c1_t1",
+              "kind": "carton",
+              "family": "SM_CardBoxC_01",
+              "mass": 2.0,
+              "center": [
+                0.84,
+                23.25,
+                0.523
+              ],
+              "size": [
+                0.5,
+                0.5,
+                0.25
+              ],
+              "box_offset": [
+                0.0,
+                0.0,
+                0.125
+              ],
+              "box_yaw": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

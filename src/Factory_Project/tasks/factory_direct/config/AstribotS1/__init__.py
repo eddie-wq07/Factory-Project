@@ -23,3 +23,14 @@ gym.register(
         "rsl_rl_distillation_cfg_entry_point": f"{agents.__name__}.rsl_rl_distillation_cfg:DistillationRunnerCfg",
     },
 )
+
+gym.register(
+    id="FactoryProject-ClampLift-ASTRIBOTS1-Direct",
+    entry_point=f"{__name__}.clamp_lift_env:ClampLiftEnv",
+    disable_env_checker=True,
+    kwargs={
+        "env_cfg_entry_point": f"{__name__}.clamp_lift_env_cfg:ClampLiftEnvCfg",
+        "default_agent": "rsl_rl",
+        "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_clamp_lift_ppo_cfg:ClampLiftPPORunnerCfg",
+    },
+)

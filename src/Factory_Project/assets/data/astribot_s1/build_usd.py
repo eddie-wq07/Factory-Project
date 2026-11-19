@@ -13,7 +13,7 @@ from pathlib import Path
 
 import urdf_usd_converter
 import usdex.core
-from pxr import Gf, Sdf, Usd, UsdGeom, UsdPhysics, UsdUtils
+from pxr import Gf, Sdf, Usd, UsdGeom, UsdPhysics, UsdShade, UsdUtils
 
 ASSET = Path(__file__).resolve().parent
 URDF = ASSET / "urdf" / "astribot_s1.urdf"
@@ -89,6 +89,10 @@ def write_joints(stage, robot, paths):
         prim.GetAttribute("newton:velocityLimit").Set(speed_limit)
         prim.AddAppliedSchema("PhysxJointAPI")
         prim.CreateAttribute("physxJoint:maxJointVelocity", Sdf.ValueTypeNames.Float, custom=False).Set(speed_limit)
+        # PhysX articulation joints default to a load-proportional friction coefficient of 0.05. On a
+        # passive wheel roller carrying a quarter of the robot's weight that locks the roller, so the
+        # chassis cannot creep below about 0.06 m/s. Every joint here is modelled friction-free.
+        prim.CreateAttribute("physxJoint:jointFriction", Sdf.ValueTypeNames.Float, custom=False).Set(0.0)
         # Reflect motor inertia into the upper-body joints to stabilize PhysX GPU solves.
         if kind == "revolute":
             armature = 0.005 if "gripper" in name else 0.06
@@ -131,6 +135,29 @@ def configure_cameras(stage, paths):
         camera.CreateClippingRangeAttr((0.01, 100))
 
 
+HAND_FRICTION = (1.1, 1.0)
+"""Static and dynamic friction of the rubberised gripper housing and fingertip pads (a simulation assumption)."""
+
+
+def bind_hand_friction(stage):
+    """Give every gripper collider a high-friction contact material for carton clamping and pinching."""
+    root = stage.GetDefaultPrim().GetPath()
+    material = UsdShade.Material.Define(stage, root.AppendPath("Physics/HandRubber"))
+    physics = UsdPhysics.MaterialAPI.Apply(material.GetPrim())
+    physics.CreateStaticFrictionAttr(HAND_FRICTION[0])
+    physics.CreateDynamicFrictionAttr(HAND_FRICTION[1])
+    physics.CreateRestitutionAttr(0.0)
+    bound = 0
+    for prim in stage.Traverse():
+        if prim.HasAPI(UsdPhysics.CollisionAPI) and "gripper" in str(prim.GetPath()):
+            UsdShade.MaterialBindingAPI.Apply(prim).Bind(
+                material, UsdShade.Tokens.weakerThanDescendants, "physics"
+            )
+            bound += 1
+    if bound != 6:
+        raise ValueError(f"Expected six gripper colliders, bound {bound}")
+
+
 def composed_stage(file, sublayer):
     stage = Usd.Stage.CreateNew(str(file))
     stage.GetRootLayer().subLayerPaths = ["./" + sublayer.name]
@@ -168,6 +195,7 @@ def build(output):
             p.AddAppliedSchema("PhysxCollisionAPI")
             p.CreateAttribute("physxCollision:contactOffset", Sdf.ValueTypeNames.Float, custom=False).Set(0.002)
             p.CreateAttribute("physxCollision:restOffset", Sdf.ValueTypeNames.Float, custom=False).Set(0)
+    bind_hand_friction(stage)
     stage.GetRootLayer().Save()
     entry = output / (NAME + ".usd")
     interface = composed_stage(entry, file)

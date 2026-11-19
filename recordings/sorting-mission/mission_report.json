@@ -1,0 +1,155 @@
+{
+  "completed": true,
+  "terminated": true,
+  "timed_out": false,
+  "wall_time_s": 521.8,
+  "metrics": {
+    "drops": 0.0,
+    "order_violations": 0.0,
+    "wrong_address": 0.0,
+    "distance_m": 272.13951954818975,
+    "items_placed": 6.0,
+    "success": 1.0,
+    "tallest_stack": 3.0,
+    "stack_limit_respected": 1.0,
+    "elapsed_s": 859.8000000000001,
+    "status": {
+      "A2": "placed",
+      "F8": "placed",
+      "H4": "placed",
+      "K3": "placed",
+      "O8": "placed",
+      "Q4": "placed"
+    },
+    "placed_time": {
+      "A2": 151.25,
+      "F8": 299.75,
+      "H4": 452.95000000000005,
+      "K3": 603.9,
+      "O8": 731.9000000000001,
+      "Q4": 859.75
+    }
+  },
+  "events": [
+    [
+      2.0,
+      "A2: grip -0 cm from centre, fingers pitched +0 deg, dock 0.41 m, shoulders 0.25 m above the palms"
+    ],
+    [
+      2.0,
+      "pick A2: attempt 1, dock 0.41 m from its front face"
+    ],
+    [
+      60.0,
+      "pick A2: carton secured"
+    ],
+    [
+      60.0,
+      "place A2: column 0, tier 2, reach 0.61 m"
+    ],
+    [
+      156.55,
+      "A2: placed and verified"
+    ],
+    [
+      156.55,
+      "F8: grip -0 cm from centre, fingers pitched +0 deg, dock 0.37 m, shoulders 0.25 m above the palms"
+    ],
+    [
+      156.55,
+      "pick F8: attempt 1, dock 0.37 m from its front face"
+    ],
+    [
+      237.25,
+      "pick F8: carton secured"
+    ],
+    [
+      237.25,
+      "place F8: column 1, tier 3, reach 0.61 m"
+    ],
+    [
+      306.2,
+      "F8: placed and verified"
+    ],
+    [
+      306.2,
+      "H4: grip -0 cm from centre, fingers pitched +0 deg, dock 0.42 m, shoulders 0.25 m above the palms"
+    ],
+    [
+      306.2,
+      "pick H4: attempt 1, dock 0.42 m from its front face"
+    ],
+    [
+      372.40000000000003,
+      "pick H4: carton secured"
+    ],
+    [
+      372.40000000000003,
+      "place H4: column 0, tier 3, reach 0.58 m"
+    ],
+    [
+      459.45000000000005,
+      "H4: placed and verified"
+    ],
+    [
+      459.45000000000005,
+      "K3: grip -0 cm from centre, fingers pitched +0 deg, dock 0.48 m, shoulders 0.25 m above the palms"
+    ],
+    [
+      459.45000000000005,
+      "pick K3: attempt 1, dock 0.48 m from its front face"
+    ],
+    [
+      532.9,
+      "pick K3: carton secured"
+    ],
+    [
+      532.9,
+      "place K3: column 0, tier 3, reach 0.54 m"
+    ],
+    [
+      609.9,
+      "K3: placed and verified"
+    ],
+    [
+      609.9,
+      "pick O8: attempt 1, pinch at 1.29 m"
+    ],
+    [
+      664.5500000000001,
+      "pick O8: bottle did not come with the hand"
+    ],
+    [
+      671.1,
+      "pick O8: attempt 2, pinch at 1.29 m"
+    ],
+    [
+      703.0500000000001,
+      "pick O8: bottle secured"
+    ],
+    [
+      703.0500000000001,
+      "place O8: into tote O8_c0_t1"
+    ],
+    [
+      738.95,
+      "O8: placed and verified"
+    ],
+    [
+      738.95,
+      "Q4: grip -0 cm from centre, fingers pitched +0 deg, dock 0.41 m, shoulders 0.25 m above the palms"
+    ],
+    [
+      738.95,
+      "pick Q4: attempt 1, dock 0.41 m from its front face"
+    ],
+    [
+      785.6,
+      "pick Q4: carton secured"
+    ],
+    [
+      785.6,
+      "place Q4: column 1, tier 3, reach 0.61 m"
+    ]
+  ]
+}

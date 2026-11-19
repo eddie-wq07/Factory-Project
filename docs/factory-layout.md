@@ -100,17 +100,19 @@ Evidence consists of the composed USD hierarchy, world-space geometry bounds, ph
 
 **One rack, one item from each aisle.** It is saved at **(1.0, 3.3, 0) m**, the former aisle-6 rack position in the reverted arrangement, southwest of the robot spawn. The original warehouse aisle 6 remains unchanged. The title reads **“To be sorted.”**
 
-Two items occupy each lower shelf; the top shelf is empty. All six use different model variants and retain their source sizes. Reading left-to-right, bottom-to-top:
+Six dynamic rigid bodies stand on the two lower shelves, front faces 3 cm behind the beam; the two upper shelves stay empty because the S1 cannot reach them. Items are addressed by the aisle location they came from and are sorted in alphabetical order of that address.
 
-| Shelf / side | Source aisle | Selected item | Why |
-| --- | --- | --- | --- |
-| Bottom / left | 1 | `SM_CardBoxB_01` — cube carton | Regular closed box as a baseline. |
-| Bottom / right | 2 | `SM_CratePlastic_A_02` — blue bin | Open container with a different rim and shape. |
-| Middle / left | 3 | `SM_CratePlastic_B_02` — shallow white bin | Smaller, shallower container than the blue bin. |
-| Middle / right | 4 | `SM_CardBoxA_02` — open carton | Flaps and an open top distinguish it from the closed carton. |
-| Upper occupied / left | 5 | `SM_BottlePlasticD_01` — small bottle | A small non-box item from the floor clutter. |
-| Upper occupied / right | 6 | `SM_CardBoxC_01` — enlarged shallow carton | A broader package, preserving its existing source scale. |
+| Address | Shelf, position along the rack | Source aisle | Source prim | Depth × width × height [m] | Mass [kg] | Notes |
+| --- | --- | --- | --- | --- | --- | --- |
+| A2 | Bottom, x = 0.03 m | 1 | `Box_4013` | 0.50 × 0.50 × 0.50 | 3.0 | Cube carton; the tallest load the two-palm clamp carries. |
+| F8 | Middle, x = 0.27 m | 2 | `Crate_15940` | 0.50 × 0.62 × 0.25 | 1.8 | Open tote, wide side to the picker. |
+| H4 | Middle, x = 1.73 m | 3 | `Crate_16579` | 0.44 × 0.53 × 0.14 | 1.0 | Shallow tote. |
+| K3 | Bottom, x = 1.00 m | 4 | `Box_19347` | 0.36 × 0.50 × 0.36 | 2.5 | The 0.7 m master carton's 0.5 m pack size, long side out. |
+| O8 | Middle, x = 1.00 m | 5 | `SM_BottlePlasticD_2` | 0.13 × 0.06 × 0.28 | 0.4 | Small bottle, picked with one gripper and dropped into a tote. |
+| Q4 | Bottom, x = 1.97 m | 6 | `Box_33430` | 0.50 × 0.50 × 0.25 | 2.0 | Flat carton. |
+
+Masses are assumptions within the S1's two-arm payload. Cartons are at most 0.5 m wide so both palms reach their sides; the rack's 850,000-triangle mesh collides through four deck boxes and four posts instead. See [the sorting task](sorting-task.md) for the drop zones, stacking rules and the executable mission.
 
 [Corrected rack screenshot](../recordings/11-18-2026/sorting-rack/To-be-sorted.png) · [Source prims and placements](../src/Factory_Project/assets/data/environments/pickup/selection.json)
 
-The saved factory composes `sorting_rack.usda`; `scripts/build_sorting_rack.py` rebuilds it. Original aisle objects remain in place. This is static staging only, with no new grasp/reset behavior.
+The saved factory composes `sorting_rack.usda`; `scripts/build_sorting_rack.py` rebuilds it. Original aisle objects remain in place. `scripts/build_drop_zones.py` adds the stocked drop pallets and the task manifest.

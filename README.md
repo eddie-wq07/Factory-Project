@@ -75,16 +75,23 @@ launched from a graphical desktop terminal. For a bounded check without a window
 See NVIDIA's [Content Browser guide](https://docs.isaacsim.omniverse.nvidia.com/latest/utilities/content_browser.html)
 and [environment catalog](https://docs.isaacsim.omniverse.nvidia.com/latest/assets/usd_assets_environments.html).
 
-## Implement the Task
+## The sorting task
 
-This project contains task scaffolding. Before running or training, replace `MISSING` configuration values and
-implement functions that raise `NotImplementedError`. Define the scene and robot assets, physics and timing,
-action and observation spaces, rewards, termination conditions, and reset behavior. Manager-based task terms live
-in the family's `mdp` package. Define assets in the scene configuration; direct environments inherit scene creation
-from the framework. If AMP is selected, implement reference-motion collection as well. Direct AMP tasks must also
-update observation history and supply `self.extras["amp_obs"]` on every step.
+One S1 takes six dynamic items off the “To be sorted.” rack in alphabetical address order and stacks each on
+its stocked pallet. [docs/sorting-task.md](docs/sorting-task.md) describes the scene, the putaway rules, the
+scripted teacher, the imitation-learning and reinforcement-learning pipelines, measured results and known limits.
 
-Registrations and agent configurations are provided so you can build on the same structure as the runnable example.
+```bash
+~/env_isaaclab/bin/python scripts/run_mission.py                    # scripted teacher, full mission
+~/env_isaaclab/bin/python scripts/run_mission.py --record mission   # with a chase-camera video
+~/env_isaaclab/bin/python scripts/record_demos.py --episodes 3      # demonstrations for imitation learning
+~/env_isaaclab/bin/python scripts/train_bc.py --demos outputs/demos/*.h5 --kind act
+~/env_isaaclab/bin/python scripts/evaluate_policy.py --policy outputs/policies/act.pt
+~/env_isaaclab/bin/python scripts/train_skill.py --device cuda --num-envs 256   # PPO clamp-and-lift skill
+```
+
+The manager-based (`FactoryProject-Factory-ASTRIBOTS1`) and multi-agent task families are still the template's
+scaffolding: their `MISSING` values and `NotImplementedError` functions remain to be filled in.
 
 ## Installation
 

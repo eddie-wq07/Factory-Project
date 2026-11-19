@@ -23,6 +23,11 @@ def test_task_registrations():
             "env_cfg_entry_point": "Factory_Project.tasks.factory_direct.config.AstribotS1.env_cfg:FactoryEnvCfg",
             "default_agent": "rsl_rl",
         },
+        "FactoryProject-ClampLift-ASTRIBOTS1-Direct": {
+            "entry_point": "Factory_Project.tasks.factory_direct.config.AstribotS1.clamp_lift_env:ClampLiftEnv",
+            "env_cfg_entry_point": "Factory_Project.tasks.factory_direct.config.AstribotS1.clamp_lift_env_cfg:ClampLiftEnvCfg",
+            "default_agent": "rsl_rl",
+        },
         "FactoryProject-Factory-Marl-ASTRIBOTS1-Direct": {
             "entry_point": "Factory_Project.tasks.factory_marl_direct.config.AstribotS1.env:FactoryMarlEnv",
             "env_cfg_entry_point": "Factory_Project.tasks.factory_marl_direct.config.AstribotS1.env_cfg:FactoryMarlEnvCfg",
