@@ -30,6 +30,11 @@ parser.add_argument(
 )
 parser.add_argument("--record-every", type=int, default=2, help="Record one frame every N control steps.")
 parser.add_argument("--report", type=Path, default=None, help="Write the mission report to this JSON file.")
+parser.add_argument(
+    "--pov",
+    action="store_true",
+    help="With --record: add the head and both wrist cameras beside the chase view (four views, 1920x810).",
+)
 parser.add_argument("--quiet", action="store_true")
 add_launcher_args(parser)
 parser.set_defaults(device="cpu")
@@ -52,18 +57,21 @@ def main() -> int:
     cfg.reset_item_xy_noise = args.item_noise
     cfg.reset_item_yaw_noise = args.yaw_noise
     if args.record:
-        from mission_video import CAMERA, RESOLUTION
+        from mission_video import CAMERA, RESOLUTION, TILE
 
-        cfg.viewer_cameras = {CAMERA: RESOLUTION}
+        cfg.viewer_cameras = {CAMERA: TILE if args.pov else RESOLUTION}
+        if args.pov:
+            cfg.enable_cameras = True
+            cfg.camera_resolution = TILE
     with launch_simulation(cfg, args):
         env = gym.make("FactoryProject-Factory-ASTRIBOTS1-Direct", cfg=cfg).unwrapped
         env.reset(seed=args.seed)
         teacher = Teacher(env, TeacherConfig(dock_noise=args.dock_noise), seed=args.seed, verbose=not args.quiet)
         recorder = None
         if args.record:
-            from mission_video import ChaseRecorder
+            from mission_video import ChaseRecorder, QuadRecorder
 
-            recorder = ChaseRecorder(env, args.record, every=args.record_every)
+            recorder = (QuadRecorder if args.pov else ChaseRecorder)(env, args.record, every=args.record_every)
 
         def mission():
             if args.items is None:

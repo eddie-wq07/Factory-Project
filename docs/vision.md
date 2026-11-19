@@ -22,7 +22,7 @@ Use the mobile base to move between workstations. Start with one arm for manipul
 
 Validate the robot model, gripper, and camera setup before training.
 
-The [project-owned S1 asset](src/Factory_Project/assets/data/astribot_s1/astribot_s1.usd) combines the four-wheel base and dual grippers. The [source notes](src/Factory_Project/assets/data/astribot_s1/SOURCE.md) describe the model and simulation approximations.
+The [project-owned S1 asset](../src/Factory_Project/assets/data/astribot_s1/astribot_s1.usd) combines the four-wheel base and dual grippers. The [source notes](../src/Factory_Project/assets/data/astribot_s1/SOURCE.md) describe the model and simulation approximations.
 ## Policy
 
 Separate navigation and manipulation policies. A task controller coordinates the full sequence.
@@ -31,7 +31,7 @@ Start with scripted baselines. Train each skill before combining them into a lon
 
 Measure full-task success, completion time, collisions, and dropped objects.
 
-Source: adapt Isaac Lab's [lift_cube_sm.py](/home/eddie/IsaacLab/scripts/environments/state_machine/lift_cube_sm.py) for scripted manipulation, then train using this project's [RSL-RL PPO scaffold](/home/eddie/Desktop/Simulation/S1-Project/src/Factory_Project/tasks/factory/config/AstribotS1/agents/rsl_rl_ppo_cfg.py).
+Source: adapt Isaac Lab's [lift_cube_sm.py](/home/eddie/IsaacLab/scripts/environments/state_machine/lift_cube_sm.py) for scripted manipulation, then train using this project's [RSL-RL PPO scaffold](../src/Factory_Project/tasks/factory/config/AstribotS1/agents/rsl_rl_ppo_cfg.py).
 
 ## Visual Navigation Policy
 
@@ -51,7 +51,7 @@ Proposed task:
 
 ## Current State
 
-The S1 can drive forward, strafe, turn, grasp and release a box in isolated physics tests. It has also been rendered inside the Full Warehouse. **Step 1 is now persisted in `src/Factory_Project/assets/data/environments/factory.usda`:** S1 starts at `(4.45, 7.30, 0.09523)` m with a 180° heading, beside the east wall and shelf end, inside a fitted caution-tape square. Open it with `scripts/view_factory.py`. Two reloads restored the same starting pose; a two-second idle physics check measured about 15 mm of settling movement. Episode-reset integration remains step 2; the task folders are still templates. [Robot validation](README.md#validation-in-isaac-sim-62) · [Boundary screenshot](recordings/11-18-2026/12:25pm_test-boundary.png)
+The S1 can drive forward, strafe, turn, grasp and release a box in isolated physics tests. It has also been rendered inside the Full Warehouse. **Step 1 is now persisted in `src/Factory_Project/assets/data/environments/factory.usda`:** S1 starts at `(4.45, 7.30, 0.09523)` m with a 180° heading, beside the east wall and shelf end, inside a fitted caution-tape square. Open it with `scripts/view_factory.py`. Two reloads restored the same starting pose; a two-second idle physics check measured about 15 mm of settling movement. Episode-reset integration remains step 2; the task folders are still templates. [Robot validation](../README.md#validation-in-isaac-sim-62) · [Boundary screenshot](../recordings/11-18-2026/12:25pm_test-boundary.png)
 
 ### Implementation phases
 
@@ -96,7 +96,7 @@ flowchart TD
 
 ### Choosing the RL approach
 
-There are two choices. The **environment template** determines where the code for actions, observations, rewards and resets lives. The **learning algorithm** determines how experience changes the policy. The existing `factory/` template lets us configure those pieces separately. `factory_direct/` puts them in one environment class. Both register PPO training configs. The two skills in this vision can be trained separately and called in sequence by one controller. The multi-agent template becomes relevant if we decide that multiple agents should act in the same episode. [Manager-based task](src/Factory_Project/tasks/factory/config/AstribotS1/env_cfg.py) · [Direct task](src/Factory_Project/tasks/factory_direct/config/AstribotS1/env.py) · [Multi-agent task](src/Factory_Project/tasks/factory_marl_direct/config/AstribotS1/env.py)
+There are two choices. The **environment template** determines where the code for actions, observations, rewards and resets lives. The **learning algorithm** determines how experience changes the policy. The existing `factory/` template lets us configure those pieces separately. `factory_direct/` puts them in one environment class. Both register PPO training configs. The two skills in this vision can be trained separately and called in sequence by one controller. The multi-agent template becomes relevant if we decide that multiple agents should act in the same episode. [Manager-based task](../src/Factory_Project/tasks/factory/config/AstribotS1/env_cfg.py) · [Direct task](../src/Factory_Project/tasks/factory_direct/config/AstribotS1/env.py) · [Multi-agent task](../src/Factory_Project/tasks/factory_marl_direct/config/AstribotS1/env.py)
 
 ```mermaid
 flowchart TD
@@ -122,4 +122,4 @@ flowchart TD
     classDef decision fill:#fff1d5,stroke:#a96916,color:#583606
 ```
 
-PPO is the proposed first experiment because it uses a familiar training loop and the repo already has a runner config. For the first comparison, count how often the S1 stops collision-free with the box inside the arm’s reach. Keep the spawn fixed while comparing policies, and vary the box and obstacle layout separately. [Existing PPO config](src/Factory_Project/tasks/factory/config/AstribotS1/agents/rsl_rl_ppo_cfg.py)
+PPO is the proposed first experiment because it uses a familiar training loop and the repo already has a runner config. For the first comparison, count how often the S1 stops collision-free with the box inside the arm’s reach. Keep the spawn fixed while comparing policies, and vary the box and obstacle layout separately. [Existing PPO config](../src/Factory_Project/tasks/factory/config/AstribotS1/agents/rsl_rl_ppo_cfg.py)

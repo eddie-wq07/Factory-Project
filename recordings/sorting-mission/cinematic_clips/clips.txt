@@ -1,0 +1,7 @@
+file '1_pick_A2.mp4'
+file '2_drop_A2.mp4'
+file '3_drop_F8.mp4'
+file '4_drop_H4.mp4'
+file '5_drop_K3.mp4'
+file '6_bottle_O8.mp4'
+file '7_drop_Q4.mp4'

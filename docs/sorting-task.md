@@ -14,7 +14,7 @@ All figures are from this machine, Isaac Sim 6.2 / Isaac Lab 3.0, run on 18 Nove
 
 | What | Result |
 | --- | --- |
-| Scripted teacher, nominal scene (seed 0, no variation) | **6 of 6 items placed**, in order, no drops, stack limits kept. 860 s simulated, 272 m driven. Same result on a second run. Video: `recordings/sorting-mission/mission_4x.mp4`. |
+| Scripted teacher, nominal scene (seed 0, no variation) | **6 of 6 items placed**, in order, no drops, stack limits kept. 860 s simulated, 272 m driven. Same result on a second run. Videos: `recordings/sorting-mission/mission_4x.mp4` and, with head and wrist cameras, `mission_pov_4x.mp4`. |
 | Scripted teacher with start and docking variation (±1 cm, ±0.02 rad, ±5 mm dock) | 5 of 15 missions complete; 55 of 90 items placed. |
 | Scripted teacher on three unseen seeds at that variation | 0 of 3 missions complete; 9 of 18 items placed. |
 | Scripted teacher with twice that variation | Roughly 2 of 14 missions complete. |
@@ -41,6 +41,7 @@ $PY scripts/build_sorting_rack.py && $PY scripts/build_drop_zones.py && $PY scri
 $PY scripts/run_mission.py
 $PY scripts/run_mission.py --items A2 F8
 $PY scripts/run_mission.py --record mission --record-every 4
+$PY scripts/run_mission.py --record mission_pov --pov --record-every 4   # plus head and wrist cameras
 $PY scripts/run_mission.py --viz kit
 
 # Imitation learning: record teacher demonstrations, train, evaluate in closed loop

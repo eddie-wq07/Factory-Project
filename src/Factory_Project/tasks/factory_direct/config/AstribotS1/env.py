@@ -214,8 +214,14 @@ class FactoryEnv(DirectRLEnv):
             float(torch.linalg.norm(data.root_ang_vel_w.torch[0])),
         )
 
-    def camera_images(self) -> dict[str, np.ndarray]:
-        """Latest onboard RGB images as ``uint8`` arrays of shape (height, width, 3)."""
+    def camera_images(self, refresh: bool = False) -> dict[str, np.ndarray]:
+        """Latest onboard RGB images as ``uint8`` arrays of shape (height, width, 3).
+
+        ``refresh`` re-reads the cameras from the renderer first; use it right after a render.
+        """
+        if refresh:
+            for camera in self._cameras.values():
+                camera.update(dt=0.0, force_recompute=True)
         return {name: camera.data.output["rgb"][0, ..., :3].cpu().numpy() for name, camera in self._cameras.items()}
 
     def view(self, name: str, eye, target) -> np.ndarray:
